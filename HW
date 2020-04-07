@@ -1,18 +1,13 @@
+CRUD
+C - create
+R - read
+U - update
+D - delete
+
 Следить за гитигнор
 
-1. Создать два приложения teachers, groups
-2. Написать в каждом приложении по одной модели Teacher, Group
-3. Добавить поле имейл в Студент
+   python manage.py generate_students 100
+1. Создать команду которая генерирует студента случайным образом по заданому количеству
+   https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/#accepting-optional-arguments
 
-4. Создать вью функцию в пр. students_app Которая добавляет студента в таблицу с случайными параметрами
-   (https://faker.readthedocs.io/en/latest/providers/faker.providers.python.html)
-   Возвращает всю информацию по студенту (колонки) (+ id)
-
-5. Создать вью функцию в пр. students_app Которая добавляет студента в таблицу с задаными параметрами с урл
-   (?first_name=Dima&last_name=Kaminskiy&age=46&phone=2342342) и добавить валидацию
-   Возвращает всю информацию по студенту (колонки) (+ id)
-
-6. Бонус: Создать вью функцию которая выводит количество Студентов, Групп, Учитилей
-
-
-# https://sqlitebrowser.org/
+2. Создать форму создания Группы и Учителя.

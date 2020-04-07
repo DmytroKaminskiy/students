@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.db.models import Q
 
 from students_app.models import Student
@@ -60,3 +60,35 @@ def students_list(request):
 # m -model
 # t - template
 # r -resource
+
+def create_student(request):
+    from students_app.forms import StudentForm
+    form_class = StudentForm
+
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/hello-world/')
+    elif request.method == 'GET':
+        form = form_class()
+
+    return render(request, 'create-student.html', {'create_form': form, 'one': 1})
+
+'''
+GET
+http://127.0.0.1:8000/create-student/?first_name=&age=22&phone=awdawawdaw
+
+POST
+head
+http://127.0.0.1:8000/create-student/
+
+body
+first_name=&age=22&phone=awdawawdaw
+
+1xx - INFO 
+2xx - OK, 200
+3xx - Redirect 302
+4xx - client error 404 (not found), 400 - Bad request, 401 - Not authorized
+5xx - server error, 500 (server error), 503
+'''

@@ -3,13 +3,14 @@ from django.conf import settings
 from django.urls import include, path
 
 
-from students_app.views import hello_world, students_list
+from students_app.views import hello_world, students_list, create_student
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello-world/', hello_world),
     path('students-list/', students_list),
+    path('create-student/', create_student),
 ]
 
 if settings.DEBUG:
