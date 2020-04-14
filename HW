@@ -1,13 +1,6 @@
-CRUD
-C - create
-R - read
-U - update
-D - delete
 
-Следить за гитигнор
 
-   python manage.py generate_students 100
-1. Создать команду которая генерирует студента случайным образом по заданому количеству
-   https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/#accepting-optional-arguments
-
-2. Создать форму создания Группы и Учителя.
+1. Редактирование Групп и Учитилей.
+2. Форма Фидбэк. (поле рейтинг 1-10)
+3. БОНУС. gmail smtp
+   https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e

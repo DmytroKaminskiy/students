@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.urls import reverse
 
 from students_app.models import Student
 
@@ -41,7 +42,6 @@ def students_list(request):
     # students = students.order_by('first_name', '-last_name')
     # students.delete()
 
-    print(students.query)
     return render(request, 'students-list.html', {'students': students})
 
 # MVC
@@ -63,17 +63,58 @@ def students_list(request):
 
 def create_student(request):
     from students_app.forms import StudentForm
+    from django.urls import reverse
     form_class = StudentForm
+
 
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/hello-world/')
+            return HttpResponseRedirect(reverse('students-list'))
+    elif request.method == 'GET':
+        form = form_class(initial={'age': 16})
+
+    return render(request, 'create-student.html', {'create_form': form, 'one': 1})
+
+
+def edit_student(request, primary_key):
+    from students_app.forms import StudentForm
+    from students_app.models import Student
+    from django.http import Http404
+
+    form_class = StudentForm
+
+    try:
+        student = Student.objects.get(id=primary_key)
+    except Student.DoesNotExist:
+        raise Http404
+
+    if request.method == 'POST':
+        form = form_class(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('students-list'))
+    elif request.method == 'GET':
+        form = form_class(instance=student)
+
+    return render(request, 'edit-student.html', {'form': form})
+
+
+def contact_us(request):
+    from students_app.forms import ContactUs
+    from django.urls import reverse
+    form_class = ContactUs
+
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('students-list'))
     elif request.method == 'GET':
         form = form_class()
 
-    return render(request, 'create-student.html', {'create_form': form, 'one': 1})
+    return render(request, 'contact-us.html', {'form': form})
 
 '''
 GET

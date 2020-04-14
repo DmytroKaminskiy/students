@@ -5,9 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-{% for st in students %}
-  {{ st.info }}
-  <br/>
+<!-- comment -->
+{# % for, if, elif, else #}
+
+{% for student in students %}
+     <p>
+         <a href="{% url 'student-edit' student.id %}">{{ student.id }}</a>
+         {{ student.first_name }} {{ student.last_name }} {{ student.phone }}
+     </p>
 {% endfor %}
+
 </body>
 </html>
