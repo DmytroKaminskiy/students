@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- comment -->
+{# % for, if, elif, else #}
+
+{% for object in objects_list %}
+     <p>
+         <a href="#">{{ object.id }}</a>
+         {{ object.name }} {{ object.head.last_name }} {{ object.head.first_name }} {{ object.head.first_name }}
+     </p>
+{% endfor %}
+
+</body>
+</html>

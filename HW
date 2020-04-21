@@ -1,6 +1,9 @@
 
+1. Добавить куратор (Teacher) для группы (Group).
+2. Вывести список групп (обратить внимание на количество запросов).
+3. Добавить Teacher в админку.
 
-1. Редактирование Групп и Учитилей.
-2. Форма Фидбэк. (поле рейтинг 1-10)
-3. БОНУС. gmail smtp
-   https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e
+Bonus:
+  Использовать RegexValidator  для поля Student.phone
+
+https://habr.com/ru/post/115825/

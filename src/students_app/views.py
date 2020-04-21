@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.urls import reverse
 
-from students_app.models import Student
+from students_app.models import Student, Group
 
 
 def hello_world(request):
@@ -115,6 +115,12 @@ def contact_us(request):
         form = form_class()
 
     return render(request, 'contact-us.html', {'form': form})
+
+
+def group_list(request):
+    groups = Group.objects.all().select_related('head')
+    return render(request, 'group-list.html', {'objects_list': groups})
+
 
 '''
 GET

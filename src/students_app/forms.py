@@ -8,6 +8,17 @@ class StudentForm(forms.ModelForm):
         model = Student
         fields = ('first_name', 'age', 'phone')
 
+    def clean_phone(self):
+        value: str = self.cleaned_data['phone']
+
+        if not value.isdigit():
+            raise forms.ValidationError('Phone should contain only digits!')
+
+        return value
+
+    def clean(self):
+        return super().clean()
+
 
 class ContactUs(forms.Form):
     email = forms.EmailField(required=True)
