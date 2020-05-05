@@ -1,21 +1,12 @@
-sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib
-sudo service postgresql status
-sudo -u postgres psql
+celery -A students worker -l info
+celery -A students beat -l info
 
-1. https://github.com/jazzband/django-silk
 
-2. создать Middleware которая будет логировать все действия в рамках админки и сохранять в базу
+1. Logger.objects.create(path=request.path, method=request.method, time_delta=time_delta)  # move to celery
+2. удялать Logger который был создан болешь 7 дней назад каждый час. .filter().delete()
 
-class Logger(models.model):
-    path = CharField (request.path)
-    method = CharField (request.method)
-    time_delta = CharField or Other Время работы вью функции
-    created = DateTimeField (auto_now_add=True)
-#############################################################
-3. При сохранении студента (Учитель), first_name and last_name первая буква должка быть Заглавной (pre_save) DiMa - Dima
-
-4. Нужно создать дата миграцию которая удов. пункт 3
-#############################################################
-5. Перейти с sqlite3 на Postgres
-
-Logger.objects.create(path=request.path, method=request.method, time_delta=time_delta)
+class Logger(models.Model):
+    path = models.CharField (request.path)
+    method = models.CharField (request.method)
+    time_delta = models.CharField or Other Время работы вью функции
+    created = models.DateTimeField (auto_now_add=True)  # https://docs.djangoproject.com/en/2.2/ref/models/fields/#django.db.models.DateField.auto_now_add

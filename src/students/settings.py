@@ -83,6 +83,15 @@ DATABASES = {
     # },
 }
 
+CELERY_BROKER_URL = 'amqp://localhost'
+
+from celery.schedules import crontab
+CELERY_BEAT_SCHEDULE = {
+    'beat': {
+        'task': 'students.tasks.beat',
+        'schedule': crontab(minute='*/1'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

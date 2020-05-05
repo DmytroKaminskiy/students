@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from students.tasks import django_sleep
 
 # pk - primary key
 class Student(models.Model):

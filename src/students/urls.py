@@ -3,7 +3,7 @@ from django.conf import settings
 from django.urls import include, path
 
 
-from students_app.views import hello_world, students_list, create_student, edit_student, contact_us, group_list
+from students_app.views import hello_world, students_list, create_student, edit_student, contact_us, group_list, slow_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('create-student/', create_student),
     path('student-e/<int:primary_key>/', edit_student, name='student-edit'),
     path('contact-us/', contact_us, name='contact-us'),
+    path('slow/', slow_view, name='slow_view'),
 ]
 
 if settings.DEBUG:

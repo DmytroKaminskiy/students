@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.urls import reverse
+from students.tasks import django_sleep
 
 from students_app.models import Student, Group
 
@@ -121,6 +122,18 @@ def contact_us(request):
 def group_list(request):
     groups = Group.objects.all().select_related('head')
     return render(request, 'group-list.html', {'objects_list': groups})
+
+# -------request-----view------sleep(5)!!!!! ------ response
+
+# -------request-----view------ sleep(5).send() ------ response
+# -----------------------------sleep(5)------------------------
+
+
+def slow_view(request):
+    student = Student.objects.last()
+    # django_sleep.delay(student.id)  # django_sleep(num) str, int, list, dict
+    django_sleep.apply_async(args=[student.id], countdown=10)  #  django_sleep.apply_async(kwargs={'student_id': student.id})
+    return HttpResponse('SLOW')
 
 
 '''
