@@ -10,7 +10,7 @@ class Student(models.Model):
     phone = models.CharField(max_length=20, default='')  # RegexValidator
 
     def info(self):
-        return f'{self.id} {self.first_name} {self.last_name} {self.age} {self.phone}'
+        return f'{self.id} ${self.first_name} ${self.last_name} ${self.age} {self.phone}'
 
     def __str__(self):
         return f'{self.last_name} {self.first_name}'
@@ -25,9 +25,7 @@ class Group(models.Model):
 
 
 '''
-OneToOne
-OneToMany
-ManyToMany
+client -> ||| server -> DB -> server ||| -> client
 '''
 
 '''

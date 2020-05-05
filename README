@@ -1,3 +1,21 @@
+sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib
+sudo service postgresql status
+sudo -u postgres psql
 
-1. сгенерировать 10000 учитилей
-2. Напсиать Вью функцию которая фильтрует по first_name, last_name, age, email, добавить сортировку.
+1. https://github.com/jazzband/django-silk
+
+2. создать Middleware которая будет логировать все действия в рамках админки и сохранять в базу
+
+class Logger(models.model):
+    path = CharField (request.path)
+    method = CharField (request.method)
+    time_delta = CharField or Other Время работы вью функции
+    created = DateTimeField (auto_now_add=True)
+#############################################################
+3. При сохранении студента (Учитель), first_name and last_name первая буква должка быть Заглавной (pre_save) DiMa - Dima
+
+4. Нужно создать дата миграцию которая удов. пункт 3
+#############################################################
+5. Перейти с sqlite3 на Postgres
+
+Logger.objects.create(path=request.path, method=request.method, time_delta=time_delta)

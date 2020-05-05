@@ -7,6 +7,7 @@ from students_app.models import Student, Group
 
 
 def hello_world(request):
+    print('hello_world')
     s = Student.objects.create(first_name='Dima', last_name='Kam', age=28, phone='123123123')
     return render(request, 'hello.html')
 
