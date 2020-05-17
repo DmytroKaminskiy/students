@@ -135,4 +135,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+try:
+    from students.settings_local import *
+except ImportError:
+    print('No local settings!\n' * 5)

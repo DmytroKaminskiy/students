@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.urls import reverse
-from students.tasks import django_sleep
+from students_app.tasks import django_sleep
 
 from students_app.models import Student, Group
 

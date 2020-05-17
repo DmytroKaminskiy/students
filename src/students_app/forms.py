@@ -1,6 +1,9 @@
 from django import forms
 
 from students_app.models import Student
+from students_app.tasks import send_email_async
+
+# from students import settings  WRONG
 
 
 class StudentForm(forms.ModelForm):
@@ -26,12 +29,5 @@ class ContactUs(forms.Form):
     message = forms.CharField(widget=forms.Textarea, required=True)
 
     def save(self):
-        from django.core.mail import send_mail
         data = self.cleaned_data
-        send_mail(
-            data['subject'],
-            data['message'],
-            data['email'],
-            ['to@example.com'],  # TODO
-            fail_silently=False,
-        )
+        send_email_async.delay(data)
